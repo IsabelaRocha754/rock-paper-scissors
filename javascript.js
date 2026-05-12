@@ -12,9 +12,8 @@ function getComputerChoice(max){
     }
 }
 
-function getHumanChoice(){
-    let string = prompt("Play: ").toLowerCase();
-    return string;
+function getHumanChoice(choice){
+    return choice;
 }
 
 function playGame(){
@@ -74,3 +73,18 @@ function playGame(){
 }
 
 playGame();
+
+//UI
+const display = document.getElementById("display");
+
+const rock = document.getElementById("rock");
+rock.addEventListener("click", () => {
+    let choice = getHumanChoice("rock");
+    display.textContent = choice;
+});
+
+const paper = document.getElementById("paper");
+paper.addEventListener("click", getHumanChoice("paper"));
+
+const scissors = document.getElementById("scissors");
+scissors.addEventListener("click", getHumanChoice("scissors"));
