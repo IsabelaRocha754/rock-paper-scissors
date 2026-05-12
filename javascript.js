@@ -84,7 +84,13 @@ rock.addEventListener("click", () => {
 });
 
 const paper = document.getElementById("paper");
-paper.addEventListener("click", getHumanChoice("paper"));
+paper.addEventListener("click", () => {
+    let choice = getHumanChoice("paper");
+    display.textContent = choice;
+});
 
 const scissors = document.getElementById("scissors");
-scissors.addEventListener("click", getHumanChoice("scissors"));
+scissors.addEventListener("click", () => {
+    let choice = getHumanChoice("scissors");
+    display.textContent = choice;
+});
