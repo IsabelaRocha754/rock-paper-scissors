@@ -1,10 +1,18 @@
-function getComputerChoice(){
-    let options = ["rock", "paper", "scissors"];
-    return options[Math.floor(Math.random() * options.length)];
-}
+//Buttons
+const rock = document.getElementById("rock");
+rock.addEventListener("click", () => {
+    playRound("rock", getComputerChoice());
+});
 
-let humanScore = 0;
-let computerScore = 0;
+const paper = document.getElementById("paper");
+paper.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+});
+
+const scissors = document.getElementById("scissors");
+scissors.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice());
+});
 
 //div for displaying humanChoice and computerChoice
 const choices = document.createElement("div");
@@ -15,6 +23,7 @@ document.body.appendChild(choices);
 const score = document.createElement("div");
 score.classList.add("score");
 document.body.appendChild(score);
+score.textContent = `0 X 0`
 
 //div for displaying who won the round
 const result = document.createElement("div");
@@ -23,6 +32,7 @@ document.body.appendChild(result);
 
 //button to restart the game
 const playAgain = document.querySelector("#playAgain");
+playAgain.disabled = true;
 playAgain.addEventListener("click", () => {
     humanScore = 0;
     computerScore = 0;
@@ -33,7 +43,16 @@ playAgain.addEventListener("click", () => {
     rock.disabled = false;
     paper.disabled = false;
     scissors.disabled = false;
+    playAgain.disabled = true;
 });
+
+function getComputerChoice(){
+    let options = ["rock", "paper", "scissors"];
+    return options[Math.floor(Math.random() * options.length)];
+}
+
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(humanChoice, computerChoice){
     if ((humanChoice == 'rock' && computerChoice == 'paper')||
@@ -67,6 +86,7 @@ function checkWinner(humanScore, computerScore){
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
+        playAgain.disabled = false;
     }
     else if (computerScore == 5){
         result.textContent = `You lost the game:( \nFinal score: ${humanScore} X ${computerScore}`;
@@ -74,21 +94,6 @@ function checkWinner(humanScore, computerScore){
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
+        playAgain.disabled = false;
     }
 };
-
-//Buttons
-const rock = document.getElementById("rock");
-rock.addEventListener("click", () => {
-    playRound("rock", getComputerChoice());
-});
-
-const paper = document.getElementById("paper");
-paper.addEventListener("click", () => {
-    playRound("paper", getComputerChoice())
-});
-
-const scissors = document.getElementById("scissors");
-scissors.addEventListener("click", () => {
-    playRound("scissors", getComputerChoice());
-});
